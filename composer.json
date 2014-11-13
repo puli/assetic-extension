@@ -1,0 +1,33 @@
+{
+    "name": "puli/assetic-puli-extension",
+    "description": "A Puli extension for the Assetic asset management library.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bernhard Schussek",
+            "email": "bschussek@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url":  "https://github.com/webmozart/assetic.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.9",
+        "kriswallsmith/assetic": "dev-lazy-assetic-node"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Puli\\Extension\\Assetic\\": "src/",
+            "Puli\\Extension\\Assetic\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
