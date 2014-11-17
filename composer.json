@@ -21,7 +21,11 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Puli\\Extension\\Assetic\\": "src/",
+            "Puli\\Extension\\Assetic\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Puli\\Extension\\Assetic\\Tests\\": "tests/"
         }
     },
