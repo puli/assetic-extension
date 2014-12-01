@@ -52,8 +52,28 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreatePuliAsset()
     {
-        $collection = $this->factory->createAsset(
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/',
             array('/webmozart/puli/css/style.css'),
+            array(),
+            array('vars' => array('var' => 'value'))
+        );
+
+        $assets = iterator_to_array($collection);
+
+        /** @var PuliAsset[] $assets */
+        $this->assertCount(1, $assets);
+        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliAsset', $assets[0]);
+        $this->assertSame('/', $assets[0]->getSourceRoot());
+        $this->assertSame('/webmozart/puli/css/style.css', $assets[0]->getSourcePath());
+        $this->assertSame(array('var' => 'value'), $assets[0]->getVars());
+    }
+
+    public function testCreatePuliAssetWithRelativePath()
+    {
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/webmozart/puli',
+            array('css/style.css'),
             array(),
             array('vars' => array('var' => 'value'))
         );
@@ -70,8 +90,34 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreatePuliAssetCollection()
     {
-        $collection = $this->factory->createAsset(
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/',
             array('/webmozart/puli/css/*.css'),
+            array(),
+            array('vars' => array('var' => 'value'))
+        );
+
+        $this->assertSame(array('var' => 'value'), $collection->getVars());
+
+        $assets = iterator_to_array($collection);
+
+        /** @var PuliAsset[] $assets */
+        $this->assertCount(2, $assets);
+        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliAsset', $assets[0]);
+        $this->assertSame('/', $assets[0]->getSourceRoot());
+        $this->assertSame('/webmozart/puli/css/reset.css', $assets[0]->getSourcePath());
+        $this->assertSame(array(), $assets[0]->getVars());
+        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliAsset', $assets[1]);
+        $this->assertSame('/', $assets[1]->getSourceRoot());
+        $this->assertSame('/webmozart/puli/css/style.css', $assets[1]->getSourcePath());
+        $this->assertSame(array(), $assets[1]->getVars());
+    }
+
+    public function testCreatePuliAssetCollectionWithRelativePath()
+    {
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/webmozart/puli',
+            array('css/*.css'),
             array(),
             array('vars' => array('var' => 'value'))
         );
@@ -94,7 +140,8 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateFileAsset()
     {
-        $collection = $this->factory->createAsset(
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/',
             array(self::$fixturesDir.'/css/style.css'),
             array(),
             array('vars' => array('var' => 'value'))
@@ -124,7 +171,8 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateHttpAsset($sourceUrl, $sourceRoot, $sourcePath)
     {
-        $collection = $this->factory->createAsset(
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/',
             array($sourceUrl),
             array(),
             array('vars' => array('var' => 'value'))
@@ -149,7 +197,8 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
         $uriLocator->register('resource', $this->repo);
         $this->factory = new PuliAssetFactory($uriLocator);
 
-        $collection = $this->factory->createAsset(
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/',
             array($sourceUrl),
             array(),
             array('vars' => array('var' => 'value'))
@@ -171,7 +220,8 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
         $uriLocator->register('resource', $this->repo);
         $this->factory = new PuliAssetFactory($uriLocator);
 
-        $collection = $this->factory->createAsset(
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/',
             array('resource:///webmozart/puli/css/style.css'),
             array(),
             array('vars' => array('var' => 'value'))
@@ -195,7 +245,10 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->factory->setAssetManager($am);
 
-        $collection = $this->factory->createAsset(array('@reference'));
+        $collection = $this->factory->createAssetForCurrentDir(
+            '/',
+            array('@reference')
+        );
 
         $assets = iterator_to_array($collection);
 
