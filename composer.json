@@ -8,17 +8,12 @@
             "email": "bschussek@gmail.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url":  "https://github.com/webmozart/assetic.git"
-        }
-    ],
     "require": {
         "php": ">=5.3.9",
-        "kriswallsmith/assetic": "dev-lazy-assetic-node"
+        "puli/puli": "~1.0@dev",
+        "puli/twig-puli-extension": "~1.0@dev",
+        "kriswallsmith/assetic": "~1.2"
     },
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "Puli\\Extension\\Assetic\\": "src/"
@@ -26,7 +21,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Puli\\Extension\\Assetic\\Tests\\": "tests/"
+            "Puli\\Extension\\Assetic\\Tests\\": "tests/",
+            "Puli\\Extension\\Twig\\Tests\\": "vendor/puli/twig-puli-extension/tests"
         }
     },
     "extra": {

@@ -19,7 +19,7 @@ use Assetic\Filter\HashableInterface;
 use Assetic\Util\CssUtils;
 use Puli\Extension\Assetic\Asset\PuliAssetInterface;
 use Puli\Extension\Assetic\AssetException;
-use Puli\Util\Path;
+use Webmozart\PathUtil\Path;
 
 /**
  * @since  1.0
