@@ -58,12 +58,12 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 '/webmozart/puli/views/stylesheet-absolute.html.twig',
-                '<link href="css/2e1c424.css" rel="stylesheet" media="screen" />'."\n",
+                '<link href="css/d6586d1.css" rel="stylesheet" media="screen" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/stylesheet-relative.html.twig',
                 // The generated name must be the same as for the absolute path
-                '<link href="css/2e1c424.css" rel="stylesheet" media="screen" />'."\n",
+                '<link href="css/d6586d1.css" rel="stylesheet" media="screen" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/stylesheet-custom-name.html.twig',
@@ -75,22 +75,22 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 '/webmozart/puli/views/stylesheet-multiple.html.twig',
-                '<link href="css/a074521.css" rel="stylesheet" media="screen" />'."\n",
+                '<link href="css/f1bcfc2.css" rel="stylesheet" media="screen" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/stylesheet-multiple.html.twig',
-                '<link href="css/a074521_style_1.css" rel="stylesheet" media="screen" />'."\n".
-                '<link href="css/a074521_reset_2.css" rel="stylesheet" media="screen" />'."\n",
+                '<link href="css/f1bcfc2_style_1.css" rel="stylesheet" media="screen" />'."\n".
+                '<link href="css/f1bcfc2_reset_2.css" rel="stylesheet" media="screen" />'."\n",
                 true,
             ),
             array(
                 '/webmozart/puli/views/javascript-absolute.html.twig',
-                '<script src="js/fd0621f.js"></script>'."\n",
+                '<script src="js/13c8e32.js"></script>'."\n",
             ),
             array(
                 '/webmozart/puli/views/javascript-relative.html.twig',
                 // The generated name must be the same as for the absolute path
-                '<script src="js/fd0621f.js"></script>'."\n",
+                '<script src="js/13c8e32.js"></script>'."\n",
             ),
             array(
                 '/webmozart/puli/views/javascript-custom-name.html.twig',
@@ -102,22 +102,22 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 '/webmozart/puli/views/javascript-multiple.html.twig',
-                '<script src="js/99ac4d2.js"></script>'."\n",
+                '<script src="js/514d0ce.js"></script>'."\n",
             ),
             array(
                 '/webmozart/puli/views/javascript-multiple.html.twig',
-                '<script src="js/99ac4d2_script_1.js"></script>'."\n".
-                '<script src="js/99ac4d2_iefix_2.js"></script>'."\n",
+                '<script src="js/514d0ce_script_1.js"></script>'."\n".
+                '<script src="js/514d0ce_iefix_2.js"></script>'."\n",
                 true,
             ),
             array(
                 '/webmozart/puli/views/image-absolute.html.twig',
-                '<img src="images/e49eee8.gif" />'."\n",
+                '<img src="images/2e73794.gif" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/image-relative.html.twig',
                 // The generated name must be the same as for the absolute path
-                '<img src="images/e49eee8.gif" />'."\n",
+                '<img src="images/2e73794.gif" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/image-custom-name.html.twig',
