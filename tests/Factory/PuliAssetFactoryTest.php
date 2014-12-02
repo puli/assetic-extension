@@ -18,7 +18,7 @@ use Assetic\AssetManager;
 use Puli\Extension\Assetic\Asset\PuliAsset;
 use Puli\Extension\Assetic\Factory\PuliAssetFactory;
 use Puli\Repository\ResourceRepository;
-use Puli\Uri\UriRepository;
+use Puli\Repository\Uri\UriRepository;
 
 /**
  * @since  1.0

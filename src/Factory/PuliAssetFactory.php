@@ -17,9 +17,9 @@ use Assetic\Factory\AssetFactory;
 use Puli\Extension\Assetic\Asset\DeferredAssetCollection;
 use Puli\Extension\Assetic\Asset\DeferredAssetName;
 use Puli\Extension\Assetic\Asset\PuliAsset;
-use Puli\Filesystem\Resource\LocalResourceInterface;
+use Puli\Repository\Filesystem\Resource\LocalResourceInterface;
 use Puli\Repository\ResourceRepositoryInterface;
-use Puli\Uri\UriRepositoryInterface;
+use Puli\Repository\Uri\UriRepositoryInterface;
 use Webmozart\PathUtil\Path;
 
 /**
