@@ -8,7 +8,7 @@ Locating Files with Puli
 [![Total Downloads](https://poser.pugx.org/puli/assetic-extension/downloads.png)](https://packagist.org/packages/puli/assetic-extension)
 [![Dependency Status](https://www.versioneye.com/php/puli:assetic-extension/1.0.0/badge.png)](https://www.versioneye.com/php/puli:assetic-extension/1.0.0)
 
-Latest release: none
+Latest release: [1.0.0-alpha1](https://packagist.org/packages/puli/assetic-extension#1.0.0-alpha1)
 
 PHP >= 5.3.9
 
