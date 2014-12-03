@@ -22,8 +22,9 @@ You can install the extension with [Composer]:
 ```json
 {
     "require": {
-        "puli/assetic-extension": "~1.0@dev"
-    }
+        "puli/assetic-extension": "~1.0"
+    },
+    "minimum-stability": "dev"
 }
 ```
 
