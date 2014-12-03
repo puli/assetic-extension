@@ -1,5 +1,5 @@
 {
-    "name": "puli/assetic-puli-extension",
+    "name": "puli/assetic-extension",
     "description": "A Puli extension for the Assetic asset management library.",
     "license": "MIT",
     "authors": [
@@ -10,8 +10,8 @@
     ],
     "require": {
         "php": ">=5.3.9",
-        "puli/puli": "~1.0@dev",
-        "puli/twig-puli-extension": "~1.0@dev",
+        "puli/repository": "~1.0@dev",
+        "puli/twig-extension": "~1.0@dev",
         "kriswallsmith/assetic": "~1.2"
     },
     "autoload": {

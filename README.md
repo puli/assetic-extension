@@ -1,13 +1,12 @@
 Locating Files with Puli
 ========================
 
-[![Build Status](https://travis-ci.org/puli/assetic-puli-extension.png?branch=master)](https://travis-ci.org/puli/assetic-puli-extension)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/puli/assetic-puli-extension/badges/quality-score.png?s=f1fbf1884aed7f896c18fc237d3eed5823ac85eb)](https://scrutinizer-ci.com/g/puli/assetic-puli-extension/)
-[![Code Coverage](https://scrutinizer-ci.com/g/puli/assetic-puli-extension/badges/coverage.png?s=5d83649f6fc3a9754297da9dc0d997be212c9145)](https://scrutinizer-ci.com/g/puli/assetic-puli-extension/)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/728198dc-dc0f-4bab-b5c0-c0b4e2a55bce/mini.png)](https://insight.sensiolabs.com/projects/728198dc-dc0f-4bab-b5c0-c0b4e2a55bce)
-[![Latest Stable Version](https://poser.pugx.org/puli/assetic-puli-extension/v/stable.png)](https://packagist.org/packages/puli/assetic-puli-extension)
-[![Total Downloads](https://poser.pugx.org/puli/assetic-puli-extension/downloads.png)](https://packagist.org/packages/puli/assetic-puli-extension)
-[![Dependency Status](https://www.versioneye.com/php/puli:assetic-puli-extension/1.0.0/badge.png)](https://www.versioneye.com/php/puli:assetic-puli-extension/1.0.0)
+[![Build Status](https://travis-ci.org/puli/assetic-extension.png?branch=master)](https://travis-ci.org/puli/assetic-extension)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/puli/assetic-extension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/puli/assetic-extension/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/4160f60e-541b-4090-a850-3005e84d6a44/mini.png)](https://insight.sensiolabs.com/projects/4160f60e-541b-4090-a850-3005e84d6a44)
+[![Latest Stable Version](https://poser.pugx.org/puli/assetic-extension/v/stable.png)](https://packagist.org/packages/puli/assetic-extension)
+[![Total Downloads](https://poser.pugx.org/puli/assetic-extension/downloads.png)](https://packagist.org/packages/puli/assetic-extension)
+[![Dependency Status](https://www.versioneye.com/php/puli:assetic-extension/1.0.0/badge.png)](https://www.versioneye.com/php/puli:assetic-extension/1.0.0)
 
 Latest release: none
 
@@ -23,7 +22,7 @@ You can install the extension with [Composer]:
 ```json
 {
     "require": {
-        "puli/assetic-puli-extension": "~1.0@dev"
+        "puli/assetic-extension": "~1.0@dev"
     }
 }
 ```
