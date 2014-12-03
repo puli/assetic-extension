@@ -22,7 +22,7 @@
     "autoload-dev": {
         "psr-4": {
             "Puli\\Extension\\Assetic\\Tests\\": "tests/",
-            "Puli\\Extension\\Twig\\Tests\\": "vendor/puli/twig-puli-extension/tests"
+            "Puli\\Extension\\Twig\\Tests\\": "vendor/puli/twig-extension/tests"
         }
     },
     "extra": {
