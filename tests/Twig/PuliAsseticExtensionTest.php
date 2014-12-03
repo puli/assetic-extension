@@ -58,12 +58,12 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 '/webmozart/puli/views/stylesheet-absolute.html.twig',
-                '<link href="css/9bdbd68.css" rel="stylesheet" media="screen" />'."\n",
+                '<link href="css/[a-z0-9]{7}.css" rel="stylesheet" media="screen" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/stylesheet-relative.html.twig',
                 // The generated name must be the same as for the absolute path
-                '<link href="css/9bdbd68.css" rel="stylesheet" media="screen" />'."\n",
+                '<link href="css/[a-z0-9]{7}.css" rel="stylesheet" media="screen" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/stylesheet-custom-name.html.twig',
@@ -75,22 +75,22 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 '/webmozart/puli/views/stylesheet-multiple.html.twig',
-                '<link href="css/3d30159.css" rel="stylesheet" media="screen" />'."\n",
+                '<link href="css/[a-z0-9]{7}.css" rel="stylesheet" media="screen" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/stylesheet-multiple.html.twig',
-                '<link href="css/3d30159_style_1.css" rel="stylesheet" media="screen" />'."\n".
-                '<link href="css/3d30159_reset_2.css" rel="stylesheet" media="screen" />'."\n",
+                '<link href="css/[a-z0-9]{7}_style_1.css" rel="stylesheet" media="screen" />'."\n".
+                '<link href="css/[a-z0-9]{7}_reset_2.css" rel="stylesheet" media="screen" />'."\n",
                 true,
             ),
             array(
                 '/webmozart/puli/views/javascript-absolute.html.twig',
-                '<script src="js/1e15a99.js"></script>'."\n",
+                '<script src="js/[a-z0-9]{7}.js"></script>'."\n",
             ),
             array(
                 '/webmozart/puli/views/javascript-relative.html.twig',
                 // The generated name must be the same as for the absolute path
-                '<script src="js/1e15a99.js"></script>'."\n",
+                '<script src="js/[a-z0-9]{7}.js"></script>'."\n",
             ),
             array(
                 '/webmozart/puli/views/javascript-custom-name.html.twig',
@@ -102,22 +102,22 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 '/webmozart/puli/views/javascript-multiple.html.twig',
-                '<script src="js/9a09ad2.js"></script>'."\n",
+                '<script src="js/[a-z0-9]{7}.js"></script>'."\n",
             ),
             array(
                 '/webmozart/puli/views/javascript-multiple.html.twig',
-                '<script src="js/9a09ad2_script_1.js"></script>'."\n".
-                '<script src="js/9a09ad2_iefix_2.js"></script>'."\n",
+                '<script src="js/[a-z0-9]{7}_script_1.js"></script>'."\n".
+                '<script src="js/[a-z0-9]{7}_iefix_2.js"></script>'."\n",
                 true,
             ),
             array(
                 '/webmozart/puli/views/image-absolute.html.twig',
-                '<img src="images/8697847.gif" />'."\n",
+                '<img src="images/[a-z0-9]{7}.gif" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/image-relative.html.twig',
                 // The generated name must be the same as for the absolute path
-                '<img src="images/8697847.gif" />'."\n",
+                '<img src="images/[a-z0-9]{7}.gif" />'."\n",
             ),
             array(
                 '/webmozart/puli/views/image-custom-name.html.twig',
@@ -137,6 +137,32 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assetFactory->setDebug($debug);
 
-        $this->assertSame($output, $this->twig->render($template));
+        $this->assertRegExp('~'.$output.'~', $this->twig->render($template));
+    }
+
+    public function provideEquivalentTemplates()
+    {
+        return array(
+            array(
+                '/webmozart/puli/views/stylesheet-absolute.html.twig',
+                '/webmozart/puli/views/stylesheet-relative.html.twig',
+            ),
+            array(
+                '/webmozart/puli/views/javascript-absolute.html.twig',
+                '/webmozart/puli/views/javascript-relative.html.twig',
+            ),
+            array(
+                '/webmozart/puli/views/image-absolute.html.twig',
+                '/webmozart/puli/views/image-relative.html.twig',
+            ),
+        );
+    }
+
+    /**
+     * @dataProvider provideEquivalentTemplates
+     */
+    public function testGenerateSameNameForAbsoluteAndRelativePaths($template1, $template2)
+    {
+        $this->assertSame($this->twig->render($template2), $this->twig->render($template1));
     }
 }
