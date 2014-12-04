@@ -154,42 +154,4 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertRegExp('~'.$output.'~', $this->twig->render($template));
     }
-
-    public function provideEquivalentTemplates()
-    {
-        return array(
-            array(
-                '/webmozart/puli/views/stylesheet-absolute.html.twig',
-                '/webmozart/puli/views/stylesheet-relative.html.twig',
-            ),
-            array(
-                '/webmozart/puli/views/stylesheet-absolute.html.twig',
-                '/webmozart/puli/views/stylesheet-relative-to-root.html.twig',
-            ),
-            array(
-                '/webmozart/puli/views/javascript-absolute.html.twig',
-                '/webmozart/puli/views/javascript-relative.html.twig',
-            ),
-            array(
-                '/webmozart/puli/views/javascript-absolute.html.twig',
-                '/webmozart/puli/views/javascript-relative-to-root.html.twig',
-            ),
-            array(
-                '/webmozart/puli/views/image-absolute.html.twig',
-                '/webmozart/puli/views/image-relative.html.twig',
-            ),
-            array(
-                '/webmozart/puli/views/image-absolute.html.twig',
-                '/webmozart/puli/views/image-relative-to-root.html.twig',
-            ),
-        );
-    }
-
-    /**
-     * @dataProvider provideEquivalentTemplates
-     */
-    public function testGenerateSameNameForAbsoluteAndRelativePaths($template1, $template2)
-    {
-        $this->assertSame($this->twig->render($template2), $this->twig->render($template1));
-    }
 }

@@ -97,7 +97,7 @@ class PuliPathAsset extends BaseAsset implements PuliAssetInterface
         // the database, we only want to fetch it when really necessary.
         $resource = $this->repo->get($path);
 
-        if (!$this->resource instanceof FileResourceInterface) {
+        if (!$resource instanceof FileResourceInterface) {
             throw new \RuntimeException(sprintf(
                 'The loaded resource is not a file resource. Got: %s',
                 is_object($resource) ? get_class($resource) : gettype($resource)

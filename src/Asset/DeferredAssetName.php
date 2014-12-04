@@ -66,7 +66,7 @@ class DeferredAssetName
     /**
      * @var string
      */
-    private $name;
+    private $name = '';
 
     /**
      * Creates a new asset name proxy.

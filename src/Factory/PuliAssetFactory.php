@@ -114,7 +114,7 @@ class PuliAssetFactory extends AssetFactory
      *
      * @return DeferredAssetName The generated asset name.
      */
-    public function generateAssetName($inputs, $filters, $options = array())
+    public function generateAssetName($inputs, $filters = array(), $options = array())
     {
         // generateAssetNameForCurrentDir() is called as soon as the current
         // directory is known
