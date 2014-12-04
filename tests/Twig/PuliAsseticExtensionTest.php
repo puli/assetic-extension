@@ -45,7 +45,7 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
         $this->repo = new ResourceRepository();
         $this->repo->add('/webmozart/puli', __DIR__.'/Fixtures');
 
-        $this->assetFactory = new PuliAssetFactory($this->repo);
+        $this->assetFactory = new PuliAssetFactory($this->repo, __DIR__.'/Fixtures');
 
         $this->twig = new RandomizedTwigEnvironment(new PuliTemplateLoader($this->repo));
         $this->twig->addExtension(new AsseticExtension($this->assetFactory, array(), null, true));
@@ -63,6 +63,11 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
             array(
                 '/webmozart/puli/views/stylesheet-relative.html.twig',
                 // The generated name must be the same as for the absolute path
+                '<link href="css/[a-z0-9]{7}.css" rel="stylesheet" media="screen" />'."\n",
+            ),
+            array(
+                // Not a relative Puli path, but a relative file system path
+                '/webmozart/puli/views/stylesheet-relative-to-root.html.twig',
                 '<link href="css/[a-z0-9]{7}.css" rel="stylesheet" media="screen" />'."\n",
             ),
             array(
@@ -93,6 +98,11 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
                 '<script src="js/[a-z0-9]{7}.js"></script>'."\n",
             ),
             array(
+                // Not a relative Puli path, but a relative file system path
+                '/webmozart/puli/views/javascript-relative-to-root.html.twig',
+                '<script src="js/[a-z0-9]{7}.js"></script>'."\n",
+            ),
+            array(
                 '/webmozart/puli/views/javascript-custom-name.html.twig',
                 '<script src="js/script.js"></script>'."\n",
             ),
@@ -117,6 +127,11 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
             array(
                 '/webmozart/puli/views/image-relative.html.twig',
                 // The generated name must be the same as for the absolute path
+                '<img src="images/[a-z0-9]{7}.gif" />'."\n",
+            ),
+            array(
+                // Not a relative Puli path, but a relative file system path
+                '/webmozart/puli/views/image-relative-to-root.html.twig',
                 '<img src="images/[a-z0-9]{7}.gif" />'."\n",
             ),
             array(
@@ -148,12 +163,24 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
                 '/webmozart/puli/views/stylesheet-relative.html.twig',
             ),
             array(
+                '/webmozart/puli/views/stylesheet-absolute.html.twig',
+                '/webmozart/puli/views/stylesheet-relative-to-root.html.twig',
+            ),
+            array(
                 '/webmozart/puli/views/javascript-absolute.html.twig',
                 '/webmozart/puli/views/javascript-relative.html.twig',
             ),
             array(
+                '/webmozart/puli/views/javascript-absolute.html.twig',
+                '/webmozart/puli/views/javascript-relative-to-root.html.twig',
+            ),
+            array(
                 '/webmozart/puli/views/image-absolute.html.twig',
                 '/webmozart/puli/views/image-relative.html.twig',
+            ),
+            array(
+                '/webmozart/puli/views/image-absolute.html.twig',
+                '/webmozart/puli/views/image-relative-to-root.html.twig',
             ),
         );
     }

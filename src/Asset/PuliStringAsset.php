@@ -14,11 +14,22 @@ namespace Puli\Extension\Assetic\Asset;
 use Assetic\Asset\StringAsset;
 
 /**
+ * An asset with static content.
+ *
+ * This asset stores its content in memory. It is mainly useful for testing.
+ *
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 class PuliStringAsset extends StringAsset implements PuliAssetInterface
 {
+    /**
+     * Creates the asset.
+     *
+     * @param string $path    The Puli path.
+     * @param array  $content The asset's content.
+     * @param array  $filters The filters to apply.
+     */
     public function __construct($path, $content, $filters = array())
     {
         parent::__construct($content, $filters, '/', $path);
