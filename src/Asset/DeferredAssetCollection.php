@@ -90,17 +90,10 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function setCurrentDir($currentDir)
     {
         if ($this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set only once.');
+            throw new \RuntimeException('The current directory must be set before loading the asset collection.');
         }
 
-        // Load the inner collection
-        $this->innerCollection = $this->factory->createAssetForCurrentDir($currentDir, $this->inputs, $this->filters, $this->options);
-
-        // GC
-        $this->factory = null;
-        $this->inputs = null;
-        $this->filters = null;
-        $this->options = null;
+        $this->loadCollection($currentDir);
     }
 
     /**
@@ -111,7 +104,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function all()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->all();
@@ -125,7 +118,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function add(AssetInterface $asset)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->add($asset);
@@ -139,7 +132,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function removeLeaf(AssetInterface $leaf, $graceful = false)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->removeLeaf($leaf, $graceful);
@@ -153,7 +146,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function replaceLeaf(AssetInterface $needle, AssetInterface $replacement, $graceful = false)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->replaceLeaf($needle, $replacement, $graceful);
@@ -167,7 +160,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function ensureFilter(FilterInterface $filter)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->ensureFilter($filter);
@@ -181,7 +174,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getFilters()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getFilters();
@@ -195,7 +188,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function clearFilters()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->clearFilters();
@@ -209,7 +202,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function load(FilterInterface $additionalFilter = null)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->load($additionalFilter);
@@ -223,7 +216,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function dump(FilterInterface $additionalFilter = null)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->dump($additionalFilter);
@@ -237,7 +230,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getContent()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getContent();
@@ -251,7 +244,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function setContent($content)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->setContent($content);
@@ -265,7 +258,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getSourceRoot()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getSourceRoot();
@@ -279,7 +272,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getSourcePath()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getSourcePath();
@@ -293,7 +286,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getSourceDirectory()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getSourceDirectory();
@@ -307,7 +300,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getTargetPath()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getTargetPath();
@@ -321,7 +314,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function setTargetPath($targetPath)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->setTargetPath($targetPath);
@@ -335,7 +328,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getLastModified()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getLastModified();
@@ -349,7 +342,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getVars()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getVars();
@@ -363,7 +356,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function setValues(array $values)
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->setValues($values);
@@ -377,7 +370,7 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getValues()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return $this->innerCollection->getValues();
@@ -391,9 +384,27 @@ class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInte
     public function getIterator()
     {
         if (!$this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set first.');
+            $this->loadCollection();
         }
 
         return new \IteratorIterator($this->innerCollection);
+    }
+
+    protected function loadCollection($currentDir = null)
+    {
+        if ($this->innerCollection) {
+            throw new \RuntimeException('The asset collection was loaded already.');
+        }
+
+        // Load the inner collection
+        // The current Puli directory is null if the currently loaded Twig
+        // template was not loaded via the Puli loader
+        $this->innerCollection = $this->factory->createAssetForCurrentDir($currentDir, $this->inputs, $this->filters, $this->options);
+
+        // GC
+        $this->factory = null;
+        $this->inputs = null;
+        $this->filters = null;
+        $this->options = null;
     }
 }

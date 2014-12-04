@@ -125,11 +125,12 @@ class PuliAssetFactory extends AssetFactory
      * Generates an asset name for a list of inputs relative to a given Puli
      * directory.
      *
-     * @param string   $currentDir The Puli directory of the currently loaded
-     *                             Twig template.
-     * @param string[] $inputs     An array of input strings.
-     * @param string[] $filters    An array of filter names.
-     * @param array    $options    An array of options.
+     * @param string|null $currentDir The Puli directory of the currently loaded
+     *                                Twig template. This is `null` if the
+     *                                template was not loaded through Puli.
+     * @param string[]    $inputs     An array of input strings.
+     * @param string[]    $filters    An array of filter names.
+     * @param array       $options    An array of options.
      *
      * @return string The asset name.
      *
@@ -156,9 +157,10 @@ class PuliAssetFactory extends AssetFactory
      *
      * The normalization logic is described in {@link generateAssetName()}.
      *
-     * @param string $input      The input string.
-     * @param string $currentDir The Puli directory of the currently loaded
-     *                           Twig template.
+     * @param string      $input      The input string.
+     * @param string|null $currentDir The Puli directory of the currently loaded
+     *                                Twig template. This is `null` if the
+     *                                template was not loaded through Puli.
      *
      * @return string The normalized input.
      *
@@ -204,14 +206,18 @@ class PuliAssetFactory extends AssetFactory
 
         // If $input is an absolute or relative Puli path, return the corresponding
         // file system path if possible
-        try {
-            $resource = $this->repo->get(Path::makeAbsolute($input, $currentDir));
+        // Don't query the Puli repository for relative paths if the current
+        // Puli directory is not set
+        if (null !== $currentDir || Path::isAbsolute($input)) {
+            try {
+                $resource = $this->repo->get(Path::makeAbsolute($input, $currentDir));
 
-            return $resource instanceof LocalResourceInterface
-                ? Path::makeRelative($resource->getLocalPath(), $this->root)
-                : $resource->getPath();
-        } catch (ResourceNotFoundException $e) {
-            // Continue
+                return $resource instanceof LocalResourceInterface
+                    ? Path::makeRelative($resource->getLocalPath(), $this->root)
+                    : $resource->getPath();
+            } catch (ResourceNotFoundException $e) {
+                // Continue
+            }
         }
 
         // If we reach this point, then input may be:
@@ -256,11 +262,12 @@ class PuliAssetFactory extends AssetFactory
      * See {@link PuliAssetFactory} for a description of the resolution logic
      * of inputs to assets.
      *
-     * @param string   $currentDir The Puli directory of the currently loaded
-     *                             Twig template.
-     * @param string[] $inputs     An array of input strings.
-     * @param string[] $filters    An array of filter names.
-     * @param array    $options    An array of options.
+     * @param string|null $currentDir The Puli directory of the currently loaded
+     *                                Twig template. This is `null` if the
+     *                                template was not loaded through Puli.
+     * @param string[]    $inputs     An array of input strings.
+     * @param string[]    $filters    An array of filter names.
+     * @param array       $options    An array of options.
      *
      * @return AssetCollectionInterface The created asset.
      *
@@ -345,13 +352,14 @@ class PuliAssetFactory extends AssetFactory
      * "js/messages.en.js" using the resolution logic described in
      * {@link PuliAssetFactory}.
      *
-     * @param string   $input      An input string containing variables.
-     * @param string   $currentDir The Puli directory of the currently loaded
-     *                             Twig template.
-     * @param string[] $roots      The file system root directories to search
-     *                             for relative inputs.
-     * @param string[] $vars       The variables that may occur in the input.
-     * @param string[] $values     A mapping of variable names to values.
+     * @param string      $input      An input string containing variables.
+     * @param string|null $currentDir The Puli directory of the currently loaded
+     *                                Twig template. This is `null` if the
+     *                                template was not loaded through Puli.
+     * @param string[]    $roots      The file system root directories to search
+     *                                for relative inputs.
+     * @param string[]    $vars       The variables that may occur in the input.
+     * @param string[]    $values     A mapping of variable names to values.
      *
      * @see parseInput()
      */
@@ -467,7 +475,7 @@ class PuliAssetFactory extends AssetFactory
         // prefer to return that
         $inputWithoutVars = VarUtils::resolve($input, $vars, $values);
 
-        if ($this->repo->contains(Path::makeAbsolute($inputWithoutVars, $currentDir))) {
+        if (null !== $currentDir && $this->repo->contains(Path::makeAbsolute($inputWithoutVars, $currentDir))) {
             $asset = $this->createPuliAsset(Path::makeAbsolute($input, $currentDir), $vars);
             $asset->setValues($values);
 

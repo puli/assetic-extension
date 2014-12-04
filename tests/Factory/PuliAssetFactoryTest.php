@@ -439,6 +439,36 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame("/* style.css */\n", $assets[0]->getContent());
     }
 
+    public function testRelativePathsNotSearchedInPuliRepositoryIfCurrentDirectoryNull()
+    {
+        // css/style.css exists in:
+        // * the factory root
+        // * the root passed via the "root" option
+        // * the current Puli directory
+
+        // The current Puli directory wins
+        $asset = $this->factory->createAsset(
+            array('css/style.css'),
+            array(),
+            array('root' => self::$fixturesDir.'/custom-root')
+        );
+
+        $asset->setCurrentDir(null);
+        $assets = iterator_to_array($asset);
+
+        /** @var PuliPathAsset[] $assets */
+        $this->assertCount(1, $assets);
+        $this->assertInstanceOf('Assetic\Asset\FileAsset', $assets[0]);
+        $this->assertSame(self::$fixturesDir.'/custom-root', $assets[0]->getSourceRoot());
+        $this->assertSame('css/style.css', $assets[0]->getSourcePath());
+        $this->assertSame(array(), $assets[0]->getVars());
+        $this->assertSame(array(), $assets[0]->getValues());
+
+        $asset->load();
+
+        $this->assertSame("/* custom style.css */\n", $assets[0]->getContent());
+    }
+
     public function testCreateFileAssetWithVariables()
     {
         $asset = $this->factory->createAsset(
@@ -819,5 +849,23 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
         $puli->setCurrentDir('/webmozart/puli/css');
 
         $this->assertNotSame($file->__toString(), $puli->__toString());
+    }
+
+    public function testGenerateNameWithRelativePathDoesNotQueryPuliRepoIfCurrentDirNull()
+    {
+        $this->repo = $this->getMock('Puli\Repository\ResourceRepositoryInterface');
+        $this->repo->expects($this->never())
+            ->method('get');
+        $this->factory = new PuliAssetFactory($this->repo, self::$fixturesDir);
+
+        $name = $this->factory->generateAssetName(
+            array('style.css')
+        );
+
+        // Don't use "/webmozart/puli" here, because that also corresponds to
+        // the root directory of the factory
+        $name->setCurrentDir(null);
+
+        $this->assertNotEmpty($name->__toString());
     }
 }
