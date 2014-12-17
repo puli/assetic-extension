@@ -14,8 +14,8 @@ namespace Puli\Extension\Assetic\Asset;
 use Assetic\Asset\AssetCollection;
 use Assetic\Filter\FilterInterface;
 use Assetic\Util\VarUtils;
-use Puli\Repository\Resource\FileResourceInterface;
-use Puli\Repository\ResourceRepositoryInterface;
+use Puli\Repository\Resource\FileResource;
+use Puli\Repository\ResourceRepository;
 
 /**
  * An asset for a Puli glob.
@@ -29,7 +29,7 @@ use Puli\Repository\ResourceRepositoryInterface;
 class PuliGlobAsset extends AssetCollection implements PuliAssetInterface
 {
     /**
-     * @var ResourceRepositoryInterface
+     * @var ResourceRepository
      */
     private $repo;
 
@@ -49,11 +49,11 @@ class PuliGlobAsset extends AssetCollection implements PuliAssetInterface
      * You can pass asset variables that occur in the glob. You can later set
      * the variables by calling {@link setValues()}.
      *
-     * @param ResourceRepositoryInterface $repo The resource repository.
-     * @param string                      $glob The glob.
-     * @param array                       $vars The asset variables.
+     * @param ResourceRepository $repo The resource repository.
+     * @param string             $glob The glob.
+     * @param array              $vars The asset variables.
      */
-    public function __construct(ResourceRepositoryInterface $repo, $glob, array $vars = array())
+    public function __construct(ResourceRepository $repo, $glob, array $vars = array())
     {
         parent::__construct(array(), array(), null, $vars);
 
@@ -129,7 +129,7 @@ class PuliGlobAsset extends AssetCollection implements PuliAssetInterface
         // we only want to fetch them if really necessary.
         foreach ($this->repo->find($glob) as $resource) {
             // Ignore non-file resources
-            if (!$resource instanceof FileResourceInterface) {
+            if (!$resource instanceof FileResource) {
                 continue;
             }
 

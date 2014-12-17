@@ -20,9 +20,9 @@ use Puli\Extension\Assetic\Asset\DeferredAssetCollection;
 use Puli\Extension\Assetic\Asset\DeferredAssetName;
 use Puli\Extension\Assetic\Asset\PuliPathAsset;
 use Puli\Extension\Assetic\Asset\PuliGlobAsset;
-use Puli\Repository\Filesystem\Resource\LocalResourceInterface;
+use Puli\Repository\Filesystem\Resource\LocalResource;
 use Puli\Repository\ResourceNotFoundException;
-use Puli\Repository\ResourceRepositoryInterface;
+use Puli\Repository\ResourceRepository;
 use Puli\Repository\Uri\UriRepositoryInterface;
 use Webmozart\PathUtil\Path;
 
@@ -62,7 +62,7 @@ use Webmozart\PathUtil\Path;
 class PuliAssetFactory extends AssetFactory
 {
     /**
-     * @var ResourceRepositoryInterface
+     * @var ResourceRepository
      */
     private $repo;
 
@@ -74,11 +74,11 @@ class PuliAssetFactory extends AssetFactory
     /**
      * Creates the factory.
      *
-     * @param ResourceRepositoryInterface $repo  The Puli resource repository.
-     * @param string                      $root  The root directory of file resources.
-     * @param bool                        $debug Whether to enable debugging.
+     * @param ResourceRepository $repo  The Puli resource repository.
+     * @param string             $root  The root directory of file resources.
+     * @param bool               $debug Whether to enable debugging.
      */
-    public function __construct(ResourceRepositoryInterface $repo, $root, $debug = false)
+    public function __construct(ResourceRepository $repo, $root, $debug = false)
     {
         parent::__construct($root, $debug);
 
@@ -212,7 +212,7 @@ class PuliAssetFactory extends AssetFactory
             try {
                 $resource = $this->repo->get(Path::makeAbsolute($input, $currentDir));
 
-                return $resource instanceof LocalResourceInterface
+                return $resource instanceof LocalResource
                     ? Path::makeRelative($resource->getLocalPath(), $this->root)
                     : $resource->getPath();
             } catch (ResourceNotFoundException $e) {

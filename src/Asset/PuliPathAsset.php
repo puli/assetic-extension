@@ -14,8 +14,8 @@ namespace Puli\Extension\Assetic\Asset;
 use Assetic\Asset\BaseAsset;
 use Assetic\Filter\FilterInterface;
 use Assetic\Util\VarUtils;
-use Puli\Repository\Resource\FileResourceInterface;
-use Puli\Repository\ResourceRepositoryInterface;
+use Puli\Repository\Resource\FileResource;
+use Puli\Repository\ResourceRepository;
 
 /**
  * An asset for a Puli path.
@@ -28,7 +28,7 @@ use Puli\Repository\ResourceRepositoryInterface;
 class PuliPathAsset extends BaseAsset implements PuliAssetInterface
 {
     /**
-     * @var ResourceRepositoryInterface
+     * @var ResourceRepository
      */
     private $repo;
 
@@ -38,7 +38,7 @@ class PuliPathAsset extends BaseAsset implements PuliAssetInterface
     private $path;
 
     /**
-     * @var FileResourceInterface
+     * @var FileResource
      */
     private $resource;
 
@@ -53,11 +53,11 @@ class PuliPathAsset extends BaseAsset implements PuliAssetInterface
      * You can pass asset variables that occur in the path. You can later set
      * the variables by calling {@link setValues()}.
      *
-     * @param ResourceRepositoryInterface $repo The resource repository.
-     * @param string                      $path The Puli path.
-     * @param array                       $vars The asset variables.
+     * @param ResourceRepository $repo The resource repository.
+     * @param string             $path The Puli path.
+     * @param array              $vars The asset variables.
      */
-    public function __construct(ResourceRepositoryInterface $repo, $path, array $vars = array())
+    public function __construct(ResourceRepository $repo, $path, array $vars = array())
     {
         parent::__construct(array(), null, $path, $vars);
 
@@ -97,7 +97,7 @@ class PuliPathAsset extends BaseAsset implements PuliAssetInterface
         // the database, we only want to fetch it when really necessary.
         $resource = $this->repo->get($path);
 
-        if (!$resource instanceof FileResourceInterface) {
+        if (!$resource instanceof FileResource) {
             throw new \RuntimeException(sprintf(
                 'The loaded resource is not a file resource. Got: %s',
                 is_object($resource) ? get_class($resource) : gettype($resource)

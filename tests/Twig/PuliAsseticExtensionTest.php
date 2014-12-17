@@ -17,7 +17,7 @@ use Puli\Extension\Assetic\Twig\PuliAsseticExtension;
 use Puli\Extension\Twig\PuliExtension;
 use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Extension\Twig\Tests\RandomizedTwigEnvironment;
-use Puli\Repository\ResourceRepository;
+use Puli\Repository\InMemoryRepository;
 
 /**
  * @since  1.0
@@ -36,13 +36,13 @@ class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
     private $assetFactory;
 
     /**
-     * @var ResourceRepository
+     * @var InMemoryRepository
      */
     private $repo;
 
     protected function setUp()
     {
-        $this->repo = new ResourceRepository();
+        $this->repo = new InMemoryRepository();
         $this->repo->add('/webmozart/puli', __DIR__.'/Fixtures');
 
         $this->assetFactory = new PuliAssetFactory($this->repo, __DIR__.'/Fixtures');

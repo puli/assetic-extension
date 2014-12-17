@@ -13,7 +13,7 @@ namespace Puli\Extension\Assetic\Asset;
 
 use Assetic\Asset\BaseAsset;
 use Assetic\Filter\FilterInterface;
-use Puli\Repository\Resource\FileResourceInterface;
+use Puli\Repository\Resource\FileResource;
 
 /**
  * An asset for a Puli file resource.
@@ -24,7 +24,7 @@ use Puli\Repository\Resource\FileResourceInterface;
 class PuliResourceAsset extends BaseAsset implements PuliAssetInterface
 {
     /**
-     * @var FileResourceInterface
+     * @var FileResource
      */
     private $resource;
 
@@ -35,10 +35,10 @@ class PuliResourceAsset extends BaseAsset implements PuliAssetInterface
      * {@link setValues()}. However, the variable values won't have any effect
      * on the loaded resource.
      *
-     * @param FileResourceInterface $resource The underlying Puli resource.
+     * @param FileResource $resource The underlying Puli resource.
      * @param string[]              $vars     The asset variables.
      */
-    public function __construct(FileResourceInterface $resource, array $vars = array())
+    public function __construct(FileResource $resource, array $vars = array())
     {
         parent::__construct(array(), null, $resource->getPath(), $vars);
 

@@ -12,7 +12,7 @@
 namespace Puli\Extension\Assetic\Twig;
 
 use Puli\Extension\Assetic\Twig\NodeVisitor\AssetPathResolver;
-use Puli\Repository\ResourceRepositoryInterface;
+use Puli\Repository\ResourceRepository;
 
 /**
  * @since  1.0
@@ -21,11 +21,11 @@ use Puli\Repository\ResourceRepositoryInterface;
 class PuliAsseticExtension extends \Twig_Extension
 {
     /**
-     * @var ResourceRepositoryInterface
+     * @var ResourceRepository
      */
     private $repo;
 
-    public function __construct(ResourceRepositoryInterface $repo)
+    public function __construct(ResourceRepository $repo)
     {
         $this->repo = $repo;
     }

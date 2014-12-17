@@ -19,7 +19,7 @@ use Puli\Extension\Assetic\Asset\DeferredAsset;
 use Puli\Extension\Assetic\Asset\PuliPathAsset;
 use Puli\Extension\Assetic\Asset\PuliResourceAsset;
 use Puli\Extension\Assetic\Factory\PuliAssetFactory;
-use Puli\Repository\ResourceRepository;
+use Puli\Repository\InMemoryRepository;
 use Puli\Repository\Uri\UriRepository;
 
 /**
@@ -31,7 +31,7 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
     private static $fixturesDir;
 
     /**
-     * @var ResourceRepository
+     * @var InMemoryRepository
      */
     private $repo;
 
@@ -47,7 +47,7 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->repo = new ResourceRepository();
+        $this->repo = new InMemoryRepository();
         $this->repo->add('/webmozart/puli', self::$fixturesDir);
         $this->factory = new PuliAssetFactory($this->repo, self::$fixturesDir);
     }
@@ -853,7 +853,7 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testGenerateNameWithRelativePathDoesNotQueryPuliRepoIfCurrentDirNull()
     {
-        $this->repo = $this->getMock('Puli\Repository\ResourceRepositoryInterface');
+        $this->repo = $this->getMock('Puli\Repository\ResourceRepository');
         $this->repo->expects($this->never())
             ->method('get');
         $this->factory = new PuliAssetFactory($this->repo, self::$fixturesDir);
