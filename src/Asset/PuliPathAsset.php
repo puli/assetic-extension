@@ -16,6 +16,7 @@ use Assetic\Filter\FilterInterface;
 use Assetic\Util\VarUtils;
 use Puli\Repository\Resource\FileResource;
 use Puli\Repository\ResourceRepository;
+use RuntimeException;
 
 /**
  * An asset for a Puli path.
@@ -98,7 +99,7 @@ class PuliPathAsset extends BaseAsset implements PuliAsset
         $resource = $this->repo->get($path);
 
         if (!$resource instanceof FileResource) {
-            throw new \RuntimeException(sprintf(
+            throw new RuntimeException(sprintf(
                 'The loaded resource is not a file resource. Got: %s',
                 is_object($resource) ? get_class($resource) : gettype($resource)
             ));

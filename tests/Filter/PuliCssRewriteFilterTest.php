@@ -13,6 +13,7 @@ namespace Puli\Tests\Extension\Assetic\Filter;
 
 use Assetic\Asset\StringAsset;
 use Assetic\AssetManager;
+use PHPUnit_Framework_TestCase;
 use Puli\Extension\Assetic\Asset\PuliStringAsset;
 use Puli\Extension\Assetic\Filter\PuliCssRewriteFilter;
 
@@ -20,7 +21,7 @@ use Puli\Extension\Assetic\Filter\PuliCssRewriteFilter;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliCssRewriteFilterTest extends \PHPUnit_Framework_TestCase
+class PuliCssRewriteFilterTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var AssetManager

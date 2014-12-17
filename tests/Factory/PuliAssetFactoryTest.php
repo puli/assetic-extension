@@ -15,6 +15,7 @@ use Assetic\Asset\AssetReference;
 use Assetic\Asset\FileAsset;
 use Assetic\Asset\HttpAsset;
 use Assetic\AssetManager;
+use PHPUnit_Framework_TestCase;
 use Puli\Extension\Assetic\Asset\LazyAsset;
 use Puli\Extension\Assetic\Asset\PuliPathAsset;
 use Puli\Extension\Assetic\Asset\PuliResourceAsset;
@@ -26,7 +27,7 @@ use Puli\Repository\Uri\UriRepository;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
+class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 {
     private static $fixturesDir;
 

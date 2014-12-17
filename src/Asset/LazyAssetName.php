@@ -12,6 +12,7 @@
 namespace Puli\Extension\Assetic\Asset;
 
 use Puli\Extension\Assetic\Factory\PuliAssetFactory;
+use RuntimeException;
 
 /**
  * Proxy for a generated asset name.
@@ -100,12 +101,12 @@ class LazyAssetName
      *
      * @param string $currentDir The current Puli directory.
      *
-     * @throws \RuntimeException If the method was already called before.
+     * @throws RuntimeException If the method was already called before.
      */
     public function setCurrentDir($currentDir)
     {
         if ($this->name) {
-            throw new \RuntimeException('The current directory must be set only once.');
+            throw new RuntimeException('The current directory must be set only once.');
         }
 
         $this->name = $this->factory->generateAssetNameForCurrentDir($currentDir, $this->inputs, $this->filters, $this->options);

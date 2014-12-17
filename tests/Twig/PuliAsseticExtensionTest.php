@@ -12,6 +12,7 @@
 namespace Puli\Tests\Extension\Assetic\Twig;
 
 use Assetic\Extension\Twig\AsseticExtension;
+use PHPUnit_Framework_TestCase;
 use Puli\Extension\Assetic\Factory\PuliAssetFactory;
 use Puli\Extension\Assetic\Twig\PuliAsseticExtension;
 use Puli\Extension\Twig\PuliExtension;
@@ -23,7 +24,7 @@ use Puli\Repository\InMemoryRepository;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliAsseticExtensionTest extends \PHPUnit_Framework_TestCase
+class PuliAsseticExtensionTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var RandomizedTwigEnvironment

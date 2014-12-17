@@ -15,6 +15,7 @@ use Assetic\Asset\AssetInterface;
 use Assetic\Filter\FilterCollection;
 use Assetic\Filter\FilterInterface;
 use Puli\Extension\Assetic\Factory\PuliAssetFactory;
+use RuntimeException;
 
 /**
  * A proxy for an asset that is loaded lazily.
@@ -279,7 +280,7 @@ class LazyAsset implements AssetInterface
         if ($this->vars) {
             foreach ($this->vars as $var) {
                 if (false === strpos($targetPath, $var)) {
-                    throw new \RuntimeException(sprintf('The asset target path "%s" must contain the variable "{%s}".', $targetPath, $var));
+                    throw new RuntimeException(sprintf('The asset target path "%s" must contain the variable "{%s}".', $targetPath, $var));
                 }
             }
         }
@@ -314,7 +315,7 @@ class LazyAsset implements AssetInterface
     public function setValues(array $values)
     {
         if ($this->innerAsset) {
-            throw new \RuntimeException('The asset values must not be changed once the inner asset was created.');
+            throw new RuntimeException('The asset values must not be changed once the inner asset was created.');
         }
 
         $this->values = $values;
@@ -334,7 +335,7 @@ class LazyAsset implements AssetInterface
     private function createInnerAsset()
     {
         if ($this->innerAsset) {
-            throw new \RuntimeException('The inner asset must be created only once.');
+            throw new RuntimeException('The inner asset must be created only once.');
         }
 
         $this->innerAsset = $this->factory->parseInputWithFixedValues($this->input, $this->currentDir, $this->roots, $this->vars, $this->values);

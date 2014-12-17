@@ -11,11 +11,13 @@
 
 namespace Puli\Extension\Assetic;
 
+use RuntimeException;
+
 /**
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class AssetException extends \Exception
+class AssetException extends RuntimeException
 {
 
 }

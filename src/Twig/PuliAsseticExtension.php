@@ -13,12 +13,13 @@ namespace Puli\Extension\Assetic\Twig;
 
 use Puli\Extension\Assetic\Twig\NodeVisitor\AssetPathResolver;
 use Puli\Repository\ResourceRepository;
+use Twig_Extension;
 
 /**
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliAsseticExtension extends \Twig_Extension
+class PuliAsseticExtension extends Twig_Extension
 {
     /**
      * @var ResourceRepository

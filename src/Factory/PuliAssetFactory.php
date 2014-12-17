@@ -24,6 +24,7 @@ use Puli\Repository\Filesystem\Resource\LocalResource;
 use Puli\Repository\ResourceNotFoundException;
 use Puli\Repository\ResourceRepository;
 use Puli\Repository\Uri\UriRepositoryInterface;
+use RuntimeException;
 use Webmozart\PathUtil\Path;
 
 /**
@@ -361,6 +362,8 @@ class PuliAssetFactory extends AssetFactory
      * @param string[]    $vars       The variables that may occur in the input.
      * @param string[]    $values     A mapping of variable names to values.
      *
+     * @return AssetInterface The created asset.
+     *
      * @see parseInput()
      */
     public function parseInputWithFixedValues($input, $currentDir, array $roots = array(), array $vars = array(), array $values = array())
@@ -463,7 +466,7 @@ class PuliAssetFactory extends AssetFactory
             return $asset;
         }
 
-        throw new \RuntimeException(sprintf(
+        throw new RuntimeException(sprintf(
             'The asset "%s" could not be found.',
             $inputWithoutVars
         ));
@@ -494,7 +497,7 @@ class PuliAssetFactory extends AssetFactory
             }
         }
 
-        throw new \RuntimeException(sprintf(
+        throw new RuntimeException(sprintf(
             'The asset "%s" could not be found. Searched the Puli directory %s '.
             'and the file system directories %s.',
             $inputWithoutVars,

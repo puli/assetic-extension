@@ -14,7 +14,10 @@ namespace Puli\Extension\Assetic\Asset;
 use Assetic\Asset\AssetCollectionInterface;
 use Assetic\Asset\AssetInterface;
 use Assetic\Filter\FilterInterface;
+use IteratorAggregate;
+use IteratorIterator;
 use Puli\Extension\Assetic\Factory\PuliAssetFactory;
+use RuntimeException;
 
 /**
  * A collection of assets that is loaded lazily.
@@ -26,7 +29,7 @@ use Puli\Extension\Assetic\Factory\PuliAssetFactory;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterface
+class LazyAssetCollection implements IteratorAggregate, AssetCollectionInterface
 {
     /**
      * @var PuliAssetFactory
@@ -85,12 +88,12 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
      *
      * @param string $currentDir The current Puli directory.
      *
-     * @throws \RuntimeException If the method was already called before.
+     * @throws RuntimeException If the method was already called before.
      */
     public function setCurrentDir($currentDir)
     {
         if ($this->innerCollection) {
-            throw new \RuntimeException('The current directory must be set before loading the asset collection.');
+            throw new RuntimeException('The current directory must be set before loading the asset collection.');
         }
 
         $this->loadCollection($currentDir);
@@ -99,7 +102,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function all()
     {
@@ -113,7 +116,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function add(AssetInterface $asset)
     {
@@ -127,7 +130,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function removeLeaf(AssetInterface $leaf, $graceful = false)
     {
@@ -141,7 +144,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function replaceLeaf(AssetInterface $needle, AssetInterface $replacement, $graceful = false)
     {
@@ -155,7 +158,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function ensureFilter(FilterInterface $filter)
     {
@@ -169,7 +172,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getFilters()
     {
@@ -183,7 +186,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function clearFilters()
     {
@@ -197,7 +200,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function load(FilterInterface $additionalFilter = null)
     {
@@ -211,7 +214,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function dump(FilterInterface $additionalFilter = null)
     {
@@ -225,7 +228,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getContent()
     {
@@ -239,7 +242,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function setContent($content)
     {
@@ -253,7 +256,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getSourceRoot()
     {
@@ -267,7 +270,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getSourcePath()
     {
@@ -281,7 +284,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getSourceDirectory()
     {
@@ -295,7 +298,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getTargetPath()
     {
@@ -309,7 +312,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function setTargetPath($targetPath)
     {
@@ -323,7 +326,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getLastModified()
     {
@@ -337,7 +340,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getVars()
     {
@@ -351,7 +354,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function setValues(array $values)
     {
@@ -365,7 +368,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getValues()
     {
@@ -379,7 +382,7 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
     /**
      * {@inheritdoc}
      *
-     * @throws \RuntimeException If the current directory has not yet been set.
+     * @throws RuntimeException If the current directory has not yet been set.
      */
     public function getIterator()
     {
@@ -387,13 +390,13 @@ class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterfac
             $this->loadCollection();
         }
 
-        return new \IteratorIterator($this->innerCollection);
+        return new IteratorIterator($this->innerCollection);
     }
 
     protected function loadCollection($currentDir = null)
     {
         if ($this->innerCollection) {
-            throw new \RuntimeException('The asset collection was loaded already.');
+            throw new RuntimeException('The asset collection was loaded already.');
         }
 
         // Load the inner collection
