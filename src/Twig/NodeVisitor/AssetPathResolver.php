@@ -12,7 +12,7 @@
 namespace Puli\Extension\Assetic\Twig\NodeVisitor;
 
 use Assetic\Extension\Twig\AsseticNode;
-use Puli\Extension\Assetic\Asset\DeferredAssetCollection;
+use Puli\Extension\Assetic\Asset\LazyAssetCollection;
 use Puli\Extension\Twig\NodeVisitor\AbstractPathResolver;
 use Puli\Extension\Twig\PuliExtension;
 
@@ -44,7 +44,7 @@ class AssetPathResolver extends AbstractPathResolver
         if ($node instanceof AsseticNode) {
             $asset = $node->getAttribute('asset');
 
-            if ($asset instanceof DeferredAssetCollection) {
+            if ($asset instanceof LazyAssetCollection) {
                 $asset->setCurrentDir($this->currentDir);
             }
         }

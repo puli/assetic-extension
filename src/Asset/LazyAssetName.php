@@ -41,7 +41,7 @@ use Puli\Extension\Assetic\Factory\PuliAssetFactory;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class DeferredAssetName
+class LazyAssetName
 {
     /**
      * @var PuliAssetFactory

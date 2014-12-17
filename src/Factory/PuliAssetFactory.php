@@ -15,11 +15,11 @@ use Assetic\Asset\AssetCollectionInterface;
 use Assetic\Asset\AssetInterface;
 use Assetic\Factory\AssetFactory;
 use Assetic\Util\VarUtils;
-use Puli\Extension\Assetic\Asset\DeferredAsset;
-use Puli\Extension\Assetic\Asset\DeferredAssetCollection;
-use Puli\Extension\Assetic\Asset\DeferredAssetName;
-use Puli\Extension\Assetic\Asset\PuliPathAsset;
+use Puli\Extension\Assetic\Asset\LazyAsset;
+use Puli\Extension\Assetic\Asset\LazyAssetCollection;
+use Puli\Extension\Assetic\Asset\LazyAssetName;
 use Puli\Extension\Assetic\Asset\PuliGlobAsset;
+use Puli\Extension\Assetic\Asset\PuliPathAsset;
 use Puli\Repository\Filesystem\Resource\LocalResource;
 use Puli\Repository\ResourceNotFoundException;
 use Puli\Repository\ResourceRepository;
@@ -89,7 +89,7 @@ class PuliAssetFactory extends AssetFactory
     /**
      * Generates an asset name.
      *
-     * The method {@link DeferredAssetName::setCurrentDir()} must be called
+     * The method {@link LazyAssetName::setCurrentDir()} must be called
      * before the name is usable.
      *
      * The name is generated from the passed inputs, filters and options.
@@ -112,13 +112,13 @@ class PuliAssetFactory extends AssetFactory
      * @param string|string[] $filters An array of filter names.
      * @param array           $options An array of options.
      *
-     * @return DeferredAssetName The generated asset name.
+     * @return LazyAssetName The generated asset name.
      */
     public function generateAssetName($inputs, $filters = array(), $options = array())
     {
         // generateAssetNameForCurrentDir() is called as soon as the current
         // directory is known
-        return new DeferredAssetName($this, (array) $inputs, (array) $filters, (array) $options);
+        return new LazyAssetName($this, (array) $inputs, (array) $filters, (array) $options);
     }
 
     /**
@@ -234,7 +234,7 @@ class PuliAssetFactory extends AssetFactory
     /**
      * Creates an asset.
      *
-     * The method {@link DeferredAssetCollection::setCurrentDir()} must be
+     * The method {@link LazyAssetCollection::setCurrentDir()} must be
      * called before the asset is usable.
      *
      * See {@link PuliAssetFactory} for a description of the resolution logic
@@ -244,7 +244,7 @@ class PuliAssetFactory extends AssetFactory
      * @param string|string[] $filters An array of filter names.
      * @param array           $options An array of options.
      *
-     * @return DeferredAssetCollection The created asset collection.
+     * @return LazyAssetCollection The created asset collection.
      *
      * @see PuliAssetFactory
      */
@@ -252,7 +252,7 @@ class PuliAssetFactory extends AssetFactory
     {
         // createAssetForCurrentDir() is called as soon as the current
         // directory is known
-        return new DeferredAssetCollection($this, (array) $inputs, (array) $filters, $options);
+        return new LazyAssetCollection($this, (array) $inputs, (array) $filters, $options);
     }
 
     /**
@@ -278,7 +278,7 @@ class PuliAssetFactory extends AssetFactory
         if (isset($options['name'])) {
             // If the name is already set to a generated name, resolve that
             // name now
-            if ($options['name'] instanceof DeferredAssetName) {
+            if ($options['name'] instanceof LazyAssetName) {
                 $options['name']->setCurrentDir($currentDir);
             }
         } else {
@@ -308,7 +308,7 @@ class PuliAssetFactory extends AssetFactory
      * logic described in {@link PuliAssetFactory}.
      *
      * If the input contains variables, that decision is deferred until the
-     * values of the variables are known. In this case, a {@link DeferredAsset}
+     * values of the variables are known. In this case, a {@link LazyAsset}
      * is returned.
      *
      * @param string $input   The input string.
@@ -335,7 +335,7 @@ class PuliAssetFactory extends AssetFactory
 
         // parseInputWithFixedValues() is called as soon as the variable values
         // are set
-        return new DeferredAsset($this, $input, $options['current_dir'], $options['root'], $options['vars']);
+        return new LazyAsset($this, $input, $options['current_dir'], $options['root'], $options['vars']);
     }
 
     /**

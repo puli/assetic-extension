@@ -26,7 +26,7 @@ use Puli\Extension\Assetic\Factory\PuliAssetFactory;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class DeferredAssetCollection implements \IteratorAggregate, AssetCollectionInterface
+class LazyAssetCollection implements \IteratorAggregate, AssetCollectionInterface
 {
     /**
      * @var PuliAssetFactory

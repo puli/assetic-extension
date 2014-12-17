@@ -40,7 +40,7 @@ use Puli\Extension\Assetic\Factory\PuliAssetFactory;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class DeferredAsset implements AssetInterface
+class LazyAsset implements AssetInterface
 {
     /**
      * @var PuliAssetFactory

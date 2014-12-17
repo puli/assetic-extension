@@ -15,7 +15,7 @@ use Assetic\Asset\AssetReference;
 use Assetic\Asset\FileAsset;
 use Assetic\Asset\HttpAsset;
 use Assetic\AssetManager;
-use Puli\Extension\Assetic\Asset\DeferredAsset;
+use Puli\Extension\Assetic\Asset\LazyAsset;
 use Puli\Extension\Assetic\Asset\PuliPathAsset;
 use Puli\Extension\Assetic\Asset\PuliResourceAsset;
 use Puli\Extension\Assetic\Factory\PuliAssetFactory;
@@ -146,9 +146,9 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
         $asset->setValues(array('locale' => 'en'));
         $assets = iterator_to_array($asset);
 
-        /** @var DeferredAsset[] $assets */
+        /** @var LazyAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\DeferredAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\LazyAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/js/messages.{locale}.js', $assets[0]->getSourcePath());
         $this->assertSame(array('locale'), $assets[0]->getVars());
@@ -195,7 +195,7 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
 
         /** @var PuliPathAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\DeferredAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\LazyAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/js/messages.{locale}.js', $assets[0]->getSourcePath());
         $this->assertSame(array('locale'), $assets[0]->getVars());
@@ -481,9 +481,9 @@ class PuliAssetFactoryTest extends \PHPUnit_Framework_TestCase
         $asset->setValues(array('locale' => 'en'));
         $assets = iterator_to_array($asset);
 
-        /** @var DeferredAsset[] $assets */
+        /** @var LazyAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\DeferredAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\LazyAsset', $assets[0]);
         $this->assertSame(self::$fixturesDir, $assets[0]->getSourceRoot());
         $this->assertSame('js/messages.{locale}.js', $assets[0]->getSourcePath());
         $this->assertSame(array('locale'), $assets[0]->getVars());
