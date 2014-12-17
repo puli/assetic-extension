@@ -17,7 +17,7 @@ use Assetic\AssetManager;
 use Assetic\Filter\FilterInterface;
 use Assetic\Filter\HashableInterface;
 use Assetic\Util\CssUtils;
-use Puli\Extension\Assetic\Asset\PuliAssetInterface;
+use Puli\Extension\Assetic\Asset\PuliAsset;
 use Puli\Extension\Assetic\AssetException;
 use Webmozart\PathUtil\Path;
 
@@ -53,7 +53,7 @@ class PuliCssRewriteFilter implements FilterInterface, HashableInterface
      */
     public function filterDump(AssetInterface $asset)
     {
-        if (!$asset instanceof PuliAssetInterface) {
+        if (!$asset instanceof PuliAsset) {
             return;
         }
 
@@ -150,7 +150,7 @@ class PuliCssRewriteFilter implements FilterInterface, HashableInterface
 
     private function extractTargetPaths(AssetInterface $asset, &$array)
     {
-        if ($asset instanceof PuliAssetInterface) {
+        if ($asset instanceof PuliAsset) {
             $targetPath = $asset->getTargetPath();
 
             // All relative paths are treated like absolute paths

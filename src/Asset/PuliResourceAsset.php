@@ -21,7 +21,7 @@ use Puli\Repository\Resource\FileResource;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliResourceAsset extends BaseAsset implements PuliAssetInterface
+class PuliResourceAsset extends BaseAsset implements PuliAsset
 {
     /**
      * @var FileResource

@@ -21,7 +21,7 @@ use Assetic\Asset\StringAsset;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliStringAsset extends StringAsset implements PuliAssetInterface
+class PuliStringAsset extends StringAsset implements PuliAsset
 {
     /**
      * Creates the asset.

@@ -25,6 +25,6 @@ use Assetic\Asset\AssetInterface;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-interface PuliAssetInterface extends AssetInterface
+interface PuliAsset extends AssetInterface
 {
 }

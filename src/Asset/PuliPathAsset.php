@@ -25,7 +25,7 @@ use Puli\Repository\ResourceRepository;
  * @since  1.0
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class PuliPathAsset extends BaseAsset implements PuliAssetInterface
+class PuliPathAsset extends BaseAsset implements PuliAsset
 {
     /**
      * @var ResourceRepository
