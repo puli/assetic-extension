@@ -1,6 +1,7 @@
 {
     "name": "puli/assetic-extension",
     "description": "A Puli extension for the Assetic asset management library.",
+    "homepage": "http://puli.io",
     "license": "MIT",
     "authors": [
         {
