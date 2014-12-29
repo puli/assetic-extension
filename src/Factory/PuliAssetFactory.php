@@ -20,10 +20,9 @@ use Puli\Extension\Assetic\Asset\LazyAssetCollection;
 use Puli\Extension\Assetic\Asset\LazyAssetName;
 use Puli\Extension\Assetic\Asset\PuliGlobAsset;
 use Puli\Extension\Assetic\Asset\PuliPathAsset;
-use Puli\Repository\Filesystem\Resource\LocalResource;
-use Puli\Repository\ResourceNotFoundException;
-use Puli\Repository\ResourceRepository;
-use Puli\Repository\Uri\UriRepositoryInterface;
+use Puli\Repository\Api\Resource\FilesystemResource;
+use Puli\Repository\Api\ResourceNotFoundException;
+use Puli\Repository\Api\ResourceRepository;
 use RuntimeException;
 use Webmozart\PathUtil\Path;
 
@@ -213,8 +212,8 @@ class PuliAssetFactory extends AssetFactory
             try {
                 $resource = $this->repo->get(Path::makeAbsolute($input, $currentDir));
 
-                return $resource instanceof LocalResource
-                    ? Path::makeRelative($resource->getLocalPath(), $this->root)
+                return $resource instanceof FilesystemResource
+                    ? Path::makeRelative($resource->getFilesystemPath(), $this->root)
                     : $resource->getPath();
             } catch (ResourceNotFoundException $e) {
                 // Continue
@@ -424,10 +423,7 @@ class PuliAssetFactory extends AssetFactory
         }
 
         if (false !== ($offset = strpos($input, '://'))) {
-            $scheme = substr($input, 0, $offset);
-
-            return $this->repo instanceof UriRepositoryInterface
-                && in_array($scheme, $this->repo->getSupportedSchemes());
+            return false;
         }
 
         return true;

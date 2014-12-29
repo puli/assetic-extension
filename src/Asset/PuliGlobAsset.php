@@ -14,8 +14,8 @@ namespace Puli\Extension\Assetic\Asset;
 use Assetic\Asset\AssetCollection;
 use Assetic\Filter\FilterInterface;
 use Assetic\Util\VarUtils;
+use Puli\Repository\Api\ResourceRepository;
 use Puli\Repository\Resource\FileResource;
-use Puli\Repository\ResourceRepository;
 
 /**
  * An asset for a Puli glob.

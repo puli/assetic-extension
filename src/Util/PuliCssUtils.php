@@ -12,6 +12,8 @@
 namespace Puli\Extension\Assetic\Util;
 
 use Assetic\Util\CssUtils;
+use Puli\Extension\Assetic\AssetException;
+use Webmozart\PathUtil\Path;
 
 /**
  * @since  1.0

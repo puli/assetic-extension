@@ -14,8 +14,8 @@ namespace Puli\Extension\Assetic\Asset;
 use Assetic\Asset\BaseAsset;
 use Assetic\Filter\FilterInterface;
 use Assetic\Util\VarUtils;
-use Puli\Repository\Resource\FileResource;
-use Puli\Repository\ResourceRepository;
+use Puli\Repository\Api\Resource\BodyResource;
+use Puli\Repository\Api\ResourceRepository;
 use RuntimeException;
 
 /**
@@ -39,7 +39,7 @@ class PuliPathAsset extends BaseAsset implements PuliAsset
     private $path;
 
     /**
-     * @var FileResource
+     * @var BodyResource
      */
     private $resource;
 
@@ -75,7 +75,7 @@ class PuliPathAsset extends BaseAsset implements PuliAsset
             $this->loadResourceFromRepo();
         }
 
-        $this->doLoad($this->resource->getContents(), $additionalFilter);
+        $this->doLoad($this->resource->getBody(), $additionalFilter);
     }
 
     /**
@@ -87,7 +87,7 @@ class PuliPathAsset extends BaseAsset implements PuliAsset
             $this->loadResourceFromRepo();
         }
 
-        return $this->resource->getLastModifiedAt();
+        return $this->resource->getMetadata()->getModificationTime();
     }
 
     private function loadResourceFromRepo()
@@ -98,9 +98,9 @@ class PuliPathAsset extends BaseAsset implements PuliAsset
         // the database, we only want to fetch it when really necessary.
         $resource = $this->repo->get($path);
 
-        if (!$resource instanceof FileResource) {
+        if (!$resource instanceof BodyResource) {
             throw new RuntimeException(sprintf(
-                'The loaded resource is not a file resource. Got: %s',
+                'The loaded resource is not a BodyResource. Got: %s',
                 is_object($resource) ? get_class($resource) : gettype($resource)
             ));
         }

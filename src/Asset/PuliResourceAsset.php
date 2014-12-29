@@ -13,7 +13,7 @@ namespace Puli\Extension\Assetic\Asset;
 
 use Assetic\Asset\BaseAsset;
 use Assetic\Filter\FilterInterface;
-use Puli\Repository\Resource\FileResource;
+use Puli\Repository\Api\Resource\BodyResource;
 
 /**
  * An asset for a Puli file resource.
@@ -24,7 +24,7 @@ use Puli\Repository\Resource\FileResource;
 class PuliResourceAsset extends BaseAsset implements PuliAsset
 {
     /**
-     * @var FileResource
+     * @var BodyResource
      */
     private $resource;
 
@@ -35,10 +35,10 @@ class PuliResourceAsset extends BaseAsset implements PuliAsset
      * {@link setValues()}. However, the variable values won't have any effect
      * on the loaded resource.
      *
-     * @param FileResource $resource The underlying Puli resource.
-     * @param string[]              $vars     The asset variables.
+     * @param BodyResource $resource The underlying Puli resource.
+     * @param string[]     $vars     The asset variables.
      */
-    public function __construct(FileResource $resource, array $vars = array())
+    public function __construct(BodyResource $resource, array $vars = array())
     {
         parent::__construct(array(), null, $resource->getPath(), $vars);
 
@@ -50,7 +50,7 @@ class PuliResourceAsset extends BaseAsset implements PuliAsset
      */
     public function load(FilterInterface $additionalFilter = null)
     {
-        $this->doLoad($this->resource->getContents(), $additionalFilter);
+        $this->doLoad($this->resource->getBody(), $additionalFilter);
     }
 
     /**
@@ -58,6 +58,6 @@ class PuliResourceAsset extends BaseAsset implements PuliAsset
      */
     public function getLastModified()
     {
-        return $this->resource->getLastModifiedAt();
+        return $this->resource->getMetadata()->getModificationTime();
     }
 }
