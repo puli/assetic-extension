@@ -21,6 +21,7 @@ use Puli\Extension\Assetic\Asset\PuliPathAsset;
 use Puli\Extension\Assetic\Asset\PuliResourceAsset;
 use Puli\Extension\Assetic\Factory\PuliAssetFactory;
 use Puli\Repository\InMemoryRepository;
+use Puli\Repository\Resource\DirectoryResource;
 
 /**
  * @since  1.0
@@ -48,7 +49,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->repo = new InMemoryRepository();
-        $this->repo->add('/webmozart/puli', self::$fixturesDir);
+        $this->repo->add('/webmozart/puli', new DirectoryResource(self::$fixturesDir));
         $this->factory = new PuliAssetFactory($this->repo, self::$fixturesDir);
     }
 
