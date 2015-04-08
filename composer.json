@@ -11,20 +11,20 @@
     ],
     "require": {
         "php": ">=5.3.9",
-        "puli/repository": "~1.0",
+        "puli/repository": "1.0.*",
         "puli/twig-extension": "~1.0",
         "kriswallsmith/assetic": "~1.2"
     },
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Puli\\Extension\\Assetic\\": "src/"
+            "Puli\\AsseticExtension\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Puli\\Extension\\Assetic\\Tests\\": "tests/",
-            "Puli\\Extension\\Twig\\Tests\\": "vendor/puli/twig-extension/tests"
+            "Puli\\AsseticExtension\\Tests\\": "tests/",
+            "Puli\\TwigExtension\\Tests\\": "vendor/puli/twig-extension/tests"
         }
     },
     "extra": {

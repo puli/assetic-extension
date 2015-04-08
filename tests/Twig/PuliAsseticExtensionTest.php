@@ -15,11 +15,11 @@ use Assetic\Extension\Twig\AsseticExtension;
 use PHPUnit_Framework_TestCase;
 use Puli\AsseticExtension\Factory\PuliAssetFactory;
 use Puli\AsseticExtension\Twig\PuliAsseticExtension;
-use Puli\Extension\Twig\PuliExtension;
-use Puli\Extension\Twig\PuliTemplateLoader;
-use Puli\Extension\Twig\Tests\RandomizedTwigEnvironment;
 use Puli\Repository\InMemoryRepository;
 use Puli\Repository\Resource\DirectoryResource;
+use Puli\TwigExtension\PuliExtension;
+use Puli\TwigExtension\PuliTemplateLoader;
+use Puli\TwigExtension\Tests\RandomizedTwigEnvironment;
 
 /**
  * @since  1.0

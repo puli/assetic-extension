@@ -13,8 +13,8 @@ namespace Puli\AsseticExtension\Twig\NodeVisitor;
 
 use Assetic\Extension\Twig\AsseticNode;
 use Puli\AsseticExtension\Asset\LazyAssetCollection;
-use Puli\Extension\Twig\NodeVisitor\AbstractPathResolver;
-use Puli\Extension\Twig\PuliExtension;
+use Puli\TwigExtension\NodeVisitor\AbstractPathResolver;
+use Puli\TwigExtension\PuliExtension;
 use Twig_NodeInterface;
 
 /**
