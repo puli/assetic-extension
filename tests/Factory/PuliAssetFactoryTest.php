@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Tests\Extension\Assetic\Factory;
+namespace Puli\AsseticExtension\Tests\Factory;
 
 use Assetic\Asset\AssetReference;
 use Assetic\Asset\FileAsset;
 use Assetic\Asset\HttpAsset;
 use Assetic\AssetManager;
 use PHPUnit_Framework_TestCase;
-use Puli\Extension\Assetic\Asset\LazyAsset;
-use Puli\Extension\Assetic\Asset\PuliPathAsset;
-use Puli\Extension\Assetic\Asset\PuliResourceAsset;
-use Puli\Extension\Assetic\Factory\PuliAssetFactory;
+use Puli\AsseticExtension\Asset\LazyAsset;
+use Puli\AsseticExtension\Asset\PuliPathAsset;
+use Puli\AsseticExtension\Asset\PuliResourceAsset;
+use Puli\AsseticExtension\Factory\PuliAssetFactory;
 use Puli\Repository\InMemoryRepository;
 use Puli\Repository\Resource\DirectoryResource;
 
@@ -64,7 +64,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliPathAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliPathAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliPathAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/style.css', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
@@ -90,7 +90,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliPathAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliPathAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliPathAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/style.css', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
@@ -123,7 +123,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliPathAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliPathAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliPathAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/style.css', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
@@ -149,7 +149,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var LazyAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\LazyAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\LazyAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/js/messages.{locale}.js', $assets[0]->getSourcePath());
         $this->assertSame(array('locale'), $assets[0]->getVars());
@@ -171,7 +171,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliPathAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliPathAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliPathAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/style.css', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
@@ -196,7 +196,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliPathAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\LazyAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\LazyAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/js/messages.{locale}.js', $assets[0]->getSourcePath());
         $this->assertSame(array('locale'), $assets[0]->getVars());
@@ -221,12 +221,12 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliResourceAsset[] $assets */
         $this->assertCount(2, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliResourceAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliResourceAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/reset.css', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
         $this->assertSame(array(), $assets[0]->getValues());
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliResourceAsset', $assets[1]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliResourceAsset', $assets[1]);
         $this->assertNull($assets[1]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/style.css', $assets[1]->getSourcePath());
         $this->assertSame(array(), $assets[1]->getVars());
@@ -256,12 +256,12 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliResourceAsset[] $assets */
         $this->assertCount(2, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliResourceAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliResourceAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/js/errors.en.js', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
         $this->assertSame(array(), $assets[0]->getValues());
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliResourceAsset', $assets[1]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliResourceAsset', $assets[1]);
         $this->assertNull($assets[1]->getSourceRoot());
         $this->assertSame('/webmozart/puli/js/messages.en.js', $assets[1]->getSourcePath());
         $this->assertSame(array(), $assets[1]->getVars());
@@ -287,11 +287,11 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliResourceAsset[] $assets */
         $this->assertCount(2, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliResourceAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliResourceAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/reset.css', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliResourceAsset', $assets[1]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliResourceAsset', $assets[1]);
         $this->assertNull($assets[1]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/style.css', $assets[1]->getSourcePath());
         $this->assertSame(array(), $assets[1]->getVars());
@@ -320,12 +320,12 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliResourceAsset[] $assets */
         $this->assertCount(2, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliResourceAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliResourceAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/js/errors.en.js', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
         $this->assertSame(array(), $assets[0]->getValues());
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliResourceAsset', $assets[1]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliResourceAsset', $assets[1]);
         $this->assertNull($assets[1]->getSourceRoot());
         $this->assertSame('/webmozart/puli/js/messages.en.js', $assets[1]->getSourcePath());
         $this->assertSame(array(), $assets[1]->getVars());
@@ -429,7 +429,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var PuliPathAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\PuliPathAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\PuliPathAsset', $assets[0]);
         $this->assertNull($assets[0]->getSourceRoot());
         $this->assertSame('/webmozart/puli/css/style.css', $assets[0]->getSourcePath());
         $this->assertSame(array(), $assets[0]->getVars());
@@ -484,7 +484,7 @@ class PuliAssetFactoryTest extends PHPUnit_Framework_TestCase
 
         /** @var LazyAsset[] $assets */
         $this->assertCount(1, $assets);
-        $this->assertInstanceOf('Puli\Extension\Assetic\Asset\LazyAsset', $assets[0]);
+        $this->assertInstanceOf('Puli\AsseticExtension\Asset\LazyAsset', $assets[0]);
         $this->assertSame(self::$fixturesDir, $assets[0]->getSourceRoot());
         $this->assertSame('js/messages.{locale}.js', $assets[0]->getSourcePath());
         $this->assertSame(array('locale'), $assets[0]->getVars());

@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Factory;
+namespace Puli\AsseticExtension\Factory;
 
 use Assetic\Asset\AssetCollectionInterface;
 use Assetic\Asset\AssetInterface;
 use Assetic\Factory\AssetFactory;
 use Assetic\Util\VarUtils;
-use Puli\Extension\Assetic\Asset\LazyAsset;
-use Puli\Extension\Assetic\Asset\LazyAssetCollection;
-use Puli\Extension\Assetic\Asset\LazyAssetName;
-use Puli\Extension\Assetic\Asset\PuliGlobAsset;
-use Puli\Extension\Assetic\Asset\PuliPathAsset;
+use Puli\AsseticExtension\Asset\LazyAsset;
+use Puli\AsseticExtension\Asset\LazyAssetCollection;
+use Puli\AsseticExtension\Asset\LazyAssetName;
+use Puli\AsseticExtension\Asset\PuliGlobAsset;
+use Puli\AsseticExtension\Asset\PuliPathAsset;
 use Puli\Repository\Api\Resource\FilesystemResource;
 use Puli\Repository\Api\ResourceNotFoundException;
 use Puli\Repository\Api\ResourceRepository;

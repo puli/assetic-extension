@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Asset;
+namespace Puli\AsseticExtension\Asset;
 
 use Assetic\Asset\AssetCollectionInterface;
 use Assetic\Asset\AssetInterface;
 use Assetic\Filter\FilterInterface;
 use IteratorAggregate;
 use IteratorIterator;
-use Puli\Extension\Assetic\Factory\PuliAssetFactory;
+use Puli\AsseticExtension\Factory\PuliAssetFactory;
 use RuntimeException;
 
 /**

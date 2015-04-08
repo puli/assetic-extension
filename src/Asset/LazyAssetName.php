@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Asset;
+namespace Puli\AsseticExtension\Asset;
 
-use Puli\Extension\Assetic\Factory\PuliAssetFactory;
+use Puli\AsseticExtension\Factory\PuliAssetFactory;
 use RuntimeException;
 
 /**

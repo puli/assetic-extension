@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Asset;
+namespace Puli\AsseticExtension\Asset;
 
 use Assetic\Asset\AssetCollection;
 use Assetic\Filter\FilterInterface;

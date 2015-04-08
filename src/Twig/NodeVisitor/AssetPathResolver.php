@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Twig\NodeVisitor;
+namespace Puli\AsseticExtension\Twig\NodeVisitor;
 
 use Assetic\Extension\Twig\AsseticNode;
-use Puli\Extension\Assetic\Asset\LazyAssetCollection;
+use Puli\AsseticExtension\Asset\LazyAssetCollection;
 use Puli\Extension\Twig\NodeVisitor\AbstractPathResolver;
 use Puli\Extension\Twig\PuliExtension;
 use Twig_NodeInterface;

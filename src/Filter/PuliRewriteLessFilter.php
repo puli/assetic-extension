@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Filter;
+namespace Puli\AsseticExtension\Filter;
 
 /**
  * @since  1.0

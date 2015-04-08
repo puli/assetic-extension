@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Tests\Extension\Assetic\Twig;
+namespace Puli\AsseticExtension\Tests\Twig;
 
 use Assetic\Extension\Twig\AsseticExtension;
 use PHPUnit_Framework_TestCase;
-use Puli\Extension\Assetic\Factory\PuliAssetFactory;
-use Puli\Extension\Assetic\Twig\PuliAsseticExtension;
+use Puli\AsseticExtension\Factory\PuliAssetFactory;
+use Puli\AsseticExtension\Twig\PuliAsseticExtension;
 use Puli\Extension\Twig\PuliExtension;
 use Puli\Extension\Twig\PuliTemplateLoader;
 use Puli\Extension\Twig\Tests\RandomizedTwigEnvironment;

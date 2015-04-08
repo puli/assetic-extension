@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Twig;
+namespace Puli\AsseticExtension\Twig;
 
-use Puli\Extension\Assetic\Twig\NodeVisitor\AssetPathResolver;
+use Puli\AsseticExtension\Twig\NodeVisitor\AssetPathResolver;
 use Puli\Repository\Api\ResourceRepository;
 use Twig_Extension;
 

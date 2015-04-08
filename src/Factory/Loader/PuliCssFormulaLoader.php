@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Factory\Loader;
+namespace Puli\AsseticExtension\Factory\Loader;
 
 /**
  * @since  1.0

@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Tests\Extension\Assetic\Filter;
+namespace Puli\AsseticExtension\Tests\Filter;
 
 use Assetic\Asset\StringAsset;
 use Assetic\AssetManager;
 use PHPUnit_Framework_TestCase;
-use Puli\Extension\Assetic\Asset\PuliStringAsset;
-use Puli\Extension\Assetic\Filter\PuliCssRewriteFilter;
+use Puli\AsseticExtension\Asset\PuliStringAsset;
+use Puli\AsseticExtension\Filter\PuliCssRewriteFilter;
 
 /**
  * @since  1.0
@@ -196,7 +196,7 @@ class PuliCssRewriteFilterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Puli\Extension\Assetic\AssetException
+     * @expectedException \Puli\AsseticExtension\AssetException
      */
     public function testTargetAssetMustExist()
     {
@@ -208,7 +208,7 @@ class PuliCssRewriteFilterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Puli\Extension\Assetic\AssetException
+     * @expectedException \Puli\AsseticExtension\AssetException
      */
     public function testTargetPathMustBeSet()
     {
@@ -239,7 +239,7 @@ class PuliCssRewriteFilterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Puli\Extension\Assetic\AssetException
+     * @expectedException \Puli\AsseticExtension\AssetException
      */
     public function testReferencedAssetMustHaveTargetPath()
     {

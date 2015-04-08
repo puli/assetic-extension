@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Puli\Extension\Assetic\Util;
+namespace Puli\AsseticExtension\Util;
 
 use Assetic\Util\CssUtils;
-use Puli\Extension\Assetic\AssetException;
+use Puli\AsseticExtension\AssetException;
 use Webmozart\PathUtil\Path;
 
 /**
