@@ -15,7 +15,7 @@ use Assetic\Extension\Twig\AsseticNode;
 use Puli\AsseticExtension\Asset\LazyAssetCollection;
 use Puli\TwigExtension\NodeVisitor\AbstractPathResolver;
 use Puli\TwigExtension\PuliExtension;
-use Twig_NodeInterface;
+use Twig_Node;
 
 /**
  * @since  1.0
@@ -36,11 +36,9 @@ class AssetPathResolver extends AbstractPathResolver
     }
 
     /**
-     * @param Twig_NodeInterface $node
-     *
-     * @return Twig_NodeInterface
+     * {@inheritdoc}
      */
-    protected function processNode(Twig_NodeInterface $node)
+    protected function processNode(Twig_Node $node)
     {
         if ($node instanceof AsseticNode) {
             $asset = $node->getAttribute('asset');
